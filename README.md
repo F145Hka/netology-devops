@@ -12,4 +12,6 @@
 
 Файлы override.tf, override.tf.json, а так же файлы с расширениями tf и tf.json, в конце имени корых присутствует _override.
 
-Скрытые файлы .terraform, а так же файлы terraform.rcnew line
+Скрытые файлы .terraform, а так же файлы terraform.rc
+new line
+new line
