@@ -15,3 +15,4 @@
 Скрытые файлы .terraform, а так же файлы terraform.rc
 new line
 new line
+new line
