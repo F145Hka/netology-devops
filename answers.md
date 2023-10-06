@@ -1,6 +1,7 @@
 1. Полный хэш aefead2207ef7e2aa5dc81a34aedf0cad4c32545, комментарий Update CHANGELOG.md  
 Ответ получен командой ***git show aefea***
 
+2.
 - 85024d3 - tag: v0.12.23  
 Ответ получен командой ***git show 85024d3*** можно добавить агрумент *--oneline*
 
