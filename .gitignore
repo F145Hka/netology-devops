@@ -1,6 +1,8 @@
 **/.vagrant/*
 authorized_key.json
 key.json
+centos-7-base.json
+image.json
 # Local .terraform directories
 **/.terraform/providers/*
 
