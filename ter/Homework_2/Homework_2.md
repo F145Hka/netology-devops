@@ -31,8 +31,8 @@
 ```
 ❯ terraform output
 ips = {
-  "db_ip" = "84.201.175.38"
-  "web_ip" = "158.160.49.160"
+  "netology-develop-platform-db" = "158.160.101.199"
+  "netology-develop-platform-web" = "158.160.126.14"
 }
 ```  
 ### Задание 5
