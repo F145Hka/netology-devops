@@ -41,3 +41,9 @@ variable "vm_resources" {
     }
   }
 }
+
+variable "serial_enabled" {
+    type = string
+    default = 1
+    description = "Enables serial on VM"
+}
