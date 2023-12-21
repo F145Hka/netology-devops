@@ -36,6 +36,8 @@ count = 3
 }
 
 resource "yandex_compute_instance" "storage_vm" {
+    depends_on = [ yandex_compute_disk.default ]
+
     name        = "${var.vm_storage_instance.name}"
     platform_id = var.vm_storage_instance.platform_id
 #  allow_stopping_for_update = true
@@ -54,9 +56,9 @@ resource "yandex_compute_instance" "storage_vm" {
     }
 
     dynamic "secondary_disk" {
-        for_each = "${yandex_compute_disk.default.*.id}"
+        for_each = yandex_compute_disk.default
         content {
- 	        disk_id = yandex_compute_disk.default["${secondary_disk.key}"].id
+ 	        disk_id = lookup(secondary_disk.value, "id", null)
             auto_delete = true
         }
     }
