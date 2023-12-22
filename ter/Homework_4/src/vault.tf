@@ -11,6 +11,7 @@ output "vault_example" {
  value = "${nonsensitive(data.vault_generic_secret.vault_example.data)}"
 } 
 
+# Тест generic
 resource "vault_generic_secret" "put_generic" {
   path = "secret/put_generic"
   data_json = jsonencode(
@@ -21,6 +22,7 @@ resource "vault_generic_secret" "put_generic" {
   )
 }
 
+# Тест kv-v2
 resource "vault_mount" "kv-v2" {
   path = "kv-v2-test"
   type = "kv-v2"
