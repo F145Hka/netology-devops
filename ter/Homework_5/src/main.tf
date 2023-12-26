@@ -17,7 +17,7 @@ module "vpc_dev" {
 }
 
 module "test-vm" {
-  source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source          = "git::https://github.com/udjin10/yandex_compute_instance?ref=95c286e0062805d5ba5edb866f387247bc1bbd44"
   env_name        = "develop"
   network_id      = module.vpc_dev.net_id
   subnet_zones    = module.vpc_dev.subnet_zone
@@ -39,7 +39,7 @@ data "template_file" "cloudinit" {
  template = file("./cloud-init.yml")
 
   vars = {
-    ssh_public_key     = "${var.vms_ssh_root_key}"
+    ssh_public_key     = var.vms_ssh_root_key
   }
 
 }
