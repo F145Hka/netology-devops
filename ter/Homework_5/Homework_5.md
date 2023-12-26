@@ -207,10 +207,15 @@ Check: CKV_SECRET_6: "Base64 High Entropy String"
 ### Задание 3  
 
 1. _Сделайте в GitHub из ветки 'terraform-05' новую ветку 'terraform-hotfix'._  
+\+
 2. _Проверье код с помощью tflint и checkov, исправьте все предупреждения и ошибки в 'terraform-hotfix', сделайте коммит._  
+\+  
 3. _Откройте новый pull request 'terraform-hotfix' --> 'terraform-05'._  
+\+
 4. _Вставьте в комментарий PR результат анализа tflint и checkov, план изменений инфраструктуры из вывода команды terraform plan._  
+\+  
 5. _Пришлите ссылку на PR для ревью. Вливать код в 'terraform-05' не нужно._  
+[PR](https://github.com/F145Hka/netology-devops/pull/1)  
 
 ------
 ### Задание 4
