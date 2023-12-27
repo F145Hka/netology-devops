@@ -8,9 +8,9 @@ terraform {
 
   backend "s3" {
     endpoint = "storage.yandexcloud.net"
-    bucket    = "netology-tfstate-develop"
-    region    = "ru-central1"
-    key       = "terraform.tfstate"
+    bucket   = "netology-tfstate-develop"
+    region   = "ru-central1"
+    key      = "terraform.tfstate"
 
     skip_region_validation      = true
     skip_credentials_validation = true
@@ -18,7 +18,7 @@ terraform {
     # skip_s3_checksum            = true
 
     dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/b1gfhjluvc715t6ebnri/etnjjdqtv7au56j38qok"
-    dynamodb_table = "tfstate-develop"
+    dynamodb_table    = "tfstate-develop"
   }
 }
 
