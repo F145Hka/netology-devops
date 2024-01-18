@@ -100,7 +100,7 @@ vector-01                  : ok=7    changed=3    unreachable=0    failed=0    s
 
 7. _Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены._  
 <details>
-<summary><code>ansible-playbook -i inventory/prod.yml site.yml --check</code></summary>
+<summary><code>ansible-playbook -i inventory/prod.yml site.yml --check --diff</code></summary>
 
 ```
 
