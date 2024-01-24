@@ -2,11 +2,17 @@
 clickhouse:
   hosts:
     clickhouse-01:
-      ansible_host: 192.168.233.25
-      ansible_user: root
+      ansible_host: 84.201.134.28
+      ansible_user: centos
 
 vector:
   hosts:
     vector-01:
-      ansible_host: 192.168.233.25
-      ansible_user: root
+      ansible_host: 158.160.111.251
+      ansible_user: centos
+
+lighthouse:
+  hosts:
+    lighthouse-01:
+      ansible_host: 51.250.5.141
+      ansible_user: centos
