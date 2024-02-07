@@ -18,7 +18,7 @@ RHEL-подобная ОС (Alma, Rocky, Centos, RedHat) версии >= 7
 * Lighthouse
 
 ### Установка необходимых ролей
-`ansible-galaxy install -r requirements.yml -p roles`
+`ansible-galaxy install -r playbook/requirements.yml -p playbook/roles`
 
 ### Запуск
 `ansible-playbook -i playbook/inventory/prod.yml playbook/site.yml`

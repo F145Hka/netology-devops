@@ -12,4 +12,4 @@
 - name: Install Lighthouse
   hosts: lighthouse
   roles:
-    - ansible-vector-role
+    - ansible-lighthouse-role
