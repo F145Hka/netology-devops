@@ -12,16 +12,13 @@ RHEL-подобная ОС (Alma, Rocky, Centos, RedHat) версии >= 7
 * Открывает порт 9000 для Clickhouse
 * Устанавливает firewalld, nginx, git
 
-### Параметры
-* Создать шаблон конфигурации vector - `templates/vector.yaml.j2`
-* Создать шаблон конфигурации lighthouse - `templates/lighthouse.yaml.j2`
-* Указать IP-адреса в `prod.yml`
-* Указать переменные в файлах `vars.yml`
-
 ### Тэги
 * Clickhouse
 * Vector
 * Lighthouse
+
+### Установка необходимых ролей
+`ansible-galaxy install -r requirements.yml -p roles`
 
 ### Запуск
 `ansible-playbook -i playbook/inventory/prod.yml playbook/site.yml`
