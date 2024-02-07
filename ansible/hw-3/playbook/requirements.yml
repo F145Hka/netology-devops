@@ -5,7 +5,7 @@
     name: clickhouse
   - src: git@github.com:F145Hka/ansible-lighthouse-role.git
     scm: git
-    version: master
+    version: "1.0"
   - src: git@github.com:F145Hka/ansible-vector-role.git
     scm: git
-    version: master
+    version: "1.0"
