@@ -1,0 +1,55 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+  options:
+    D: true
+    vv: true
+platforms:
+  - name: centos_7
+    image: docker.io/pycontribs/centos:7
+    container: centos_7
+    pre_build_image: true
+    command: /usr/sbin/init
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    env:
+      ANSIBLE_USER: ansible
+      SUDO_GROUP: wheel
+      DEPLOY_GROUP: deployer
+  - name: centos_8
+    image: docker.io/pycontribs/centos:8
+    container: centos_8
+    pre_build_image: true
+    command: /usr/sbin/init
+    privileged: true
+    capabilities:
+      - SYS_ADMIN
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    env:
+      ANSIBLE_USER: ansible
+      SUDO_GROUP: wheel
+      DEPLOY_GROUP: deployer
+    # you might want to add your own variables here based on what provisioning
+    # you are doing like:
+    # image: quay.io/centos/centos:stream8
+provisioner:
+  name: ansible
+  inventory:
+    links:
+      hosts: ../../tests/inventory
+#      group_vars: ../resources/inventory/group_vars/
+#      host_vars: ../resources/inventory/host_vars/
+verifier:
+  name: ansible

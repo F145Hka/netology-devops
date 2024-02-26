@@ -1,0 +1,57 @@
+---
+- name: Add EPEL Repo
+  become: true
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+
+- name: Install Nginx and Git
+  become: true
+  ansible.builtin.yum:
+    name: nginx, git
+    state: present
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Start Nginx
+  become: true
+  ansible.builtin.systemd:
+    service: nginx
+    state: started
+    enabled: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Create directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ lighthouse_dir }}"
+    state: directory
+    recurse: true
+    mode: '0755'
+    owner: nginx
+    group: nginx
+
+- name: Clone lighthouse repo
+  become: true
+  ansible.builtin.git:
+    repo: "{{ lighthouse_git }}"
+    version: master
+    dest: "{{ lighthouse_dir }}"
+    force: true
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Deploy nginx config
+  become: true
+  ansible.builtin.template:
+    src: "templates/lighthouse.conf.j2"
+    dest: "/etc/nginx/conf.d/lighthouse.conf"
+    mode: '0644'
+
+- name: Add SELinux permissions
+  become: true
+  ansible.builtin.command: "chcon -vR system_u:object_r:httpd_sys_content_t:s0 {{ lighthouse_dir }}"
+  changed_when: true
+  notify: Restart nginx
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
+  tags: [lighthouse]
