@@ -1,0 +1,20 @@
+stages:
+- build
+- deploy
+image: docker:25
+services:
+- docker:25-dind
+builder:
+  stage: build
+  tags:
+    - docker
+  script:
+    - docker build -t my-flask-build:latest .
+deployer:
+  stage: deploy
+  tags:
+  - docker
+  script:
+    - docker build -t ${YCR_REGISTRY}/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+    - docker login -u ${YCR_TOKEN_TYPE} -p ${YCR_TOKEN} ${YCR_REGISTRY}
+    - docker push ${YCR_REGISTRY}/hello:gitlab-$CI_COMMIT_SHORT_SHA
