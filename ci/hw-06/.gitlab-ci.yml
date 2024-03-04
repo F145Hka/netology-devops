@@ -15,6 +15,6 @@ deployer:
   tags:
   - docker
   script:
-    - docker build -t ${YCR_REGISTRY}/hello:gitlab-$CI_COMMIT_SHORT_SHA .
-    - docker login -u ${YCR_TOKEN_TYPE} -p ${YCR_TOKEN} ${YCR_REGISTRY}
-    - docker push ${YCR_REGISTRY}/hello:gitlab-$CI_COMMIT_SHORT_SHA
+    - docker build -t $YCR_REGISTRY/hello:gitlab-$CI_COMMIT_SHORT_SHA .
+    - docker login -u $YCR_TOKEN_TYPE -p $YCR_TOKEN $YCR_REGISTRY
+    - docker push $YCR_REGISTRY/hello:gitlab-$CI_COMMIT_SHORT_SHA
