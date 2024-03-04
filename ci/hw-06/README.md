@@ -16,6 +16,7 @@
 [Скрин](./images/screenshot_1.png)  
 
 3. _(* Необязательное задание повышенной сложности. )  Если вы уже знакомы с k8s попробуйте выполнить задание, запустив gitlab server и gitlab runner в k8s  [по инструкции](https://cloud.yandex.ru/docs/tutorials/infrastructure-management/gitlab-containers)._  
+  
 Не выполнял, так как не знаком с k8s  
 
 4. _Создайте свой новый проект._  
