@@ -1,0 +1,5 @@
+---
+lighthouse_git: "https://github.com/VKCOM/lighthouse"
+lighthouse_dir: "/var/www/lighthouse"
+lighthouse_error_log: "lighthouse_error"
+lighthouse_access_log: "lighthouse_access"
