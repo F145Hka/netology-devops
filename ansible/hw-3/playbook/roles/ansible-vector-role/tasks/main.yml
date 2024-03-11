@@ -1,0 +1,28 @@
+---
+- name: Install vector package
+  block:
+    - name: Get vector package
+      ansible.builtin.get_url:
+        url: "https://yum.vector.dev/stable/vector-0/{{ vector_arch }}/vector-{{ vector_version }}.{{ vector_arch }}.rpm"
+        dest: "/tmp/vector-{{ vector_version }}.{{ vector_arch }}.rpm"
+        mode: '0644'
+
+    - name: Install vector packages
+      become: true
+      ansible.builtin.yum:
+        name:
+          - /tmp/vector-{{ vector_version }}.{{ vector_arch }}.rpm
+        disable_gpg_check: true
+      notify: Start vector service
+      ignore_errors: "{{ ansible_check_mode }}"
+
+    - name: Deploy vector config
+      become: true
+      ansible.builtin.template:
+        src: templates/vector.yaml.j2
+        dest: /etc/vector/vector.yaml
+        mode: '0644'
+
+    - name: Flush handlers
+      ansible.builtin.meta: flush_handlers
+  tags: [vector]

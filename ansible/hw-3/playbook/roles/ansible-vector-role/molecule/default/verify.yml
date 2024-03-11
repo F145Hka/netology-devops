@@ -1,0 +1,30 @@
+- name: Verify
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Validate installation
+      ansible.builtin.command: "vector --version"
+      changed_when: false
+      register: vector_ver
+    - name: Check vector config
+      ansible.builtin.assert:
+        that: "vector_ver.rc == 0"
+        success_msg: "Installation is valid"
+        fail_msg: "Installation is not valid"
+    - name: Validate vector config
+      ansible.builtin.command: "vector validate --no-environment --config-yaml /etc/vector/vector.yaml"
+      changed_when: false
+      register: vector_config
+    - name: Check vector config
+      ansible.builtin.assert:
+        that: "vector_config.rc == 0"
+        success_msg: "Config is valid"
+        fail_msg: "Config is not valid"
+    # - name: try to work out how to access the service
+    #   ansible.builtin.debug:
+    #     var: ansible_facts.services["vector.service"]
+    # - name: Check vector service
+    #   ansible.builtin.assert:
+    #     that: ansible_facts['services]['vector.service']['state'] == 'running'
+    #     success_msg: "Service is running"
+    #     fail_msg: "Service not running"
