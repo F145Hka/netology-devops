@@ -1,4 +1,5 @@
 import sentry_sdk
+from typing import Union
 
 sentry_sdk.init(
     dsn="https://6dca7e7ffe6ce81d13624dfa62983581@o4507061067907072.ingest.us.sentry.io/4507061452865536",
@@ -11,3 +12,10 @@ sentry_sdk.init(
     profiles_sample_rate=1.0,
 )
 
+
+def division(a: Union[float, int], b: Union[float, int]) -> float:
+    return a / b
+
+
+if __name__ == "__main__":
+    print(division(10, 0))
