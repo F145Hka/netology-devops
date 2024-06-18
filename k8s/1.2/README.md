@@ -32,13 +32,12 @@ _3. Подключиться локально к Pod с помощью `kubectl 
 `kubectl port-forward -n default pods/hello-world 8080:8080`  
 
 <details>
+<summary>Скрин</summary>
+
 <image src='./images/screenshot_1.png'>
 
-<summary>Скрин</summary
-
 </details>
-
-
+  
 ------
 
 ### Задание 2. Создать Service и подключить его к Pod
@@ -71,12 +70,13 @@ Endpoints:         10.1.148.175:8080
 Session Affinity:  None
 Events:            <none>
 ```
+  
 `kubectl port-forward -n default services/netology-svc 8081:8080`
 
 <details>
-<image src='./images/screenshot_2.png'>
+<summary>Скрин</summary>
 
-<summary>Скрин</summary
+<image src='./images/screenshot_2.png'>
 
 </details>
 
