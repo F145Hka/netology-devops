@@ -77,7 +77,8 @@ nginx-multitool-56c9c9dcb5-rp2qb   2/2     Running   0          7m17s
   
 Сделано выше.  
   
-4. _Создать Service, который обеспечит доступ до реплик приложений из п.1._
+4. _Создать Service, который обеспечит доступ до реплик приложений из п.1._  
+  
 Создаем [service-манифест](./service.yaml) и применяем его:
 ```
 ❯ kubectl apply -n netology -f service.yaml
