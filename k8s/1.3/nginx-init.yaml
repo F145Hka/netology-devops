@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-init-deployment
+  namespace: netology
+spec:
+  selector:
+    matchLabels:
+      app: nginx-init
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-init
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable
+        ports:
+        - containerPort: 80
+      initContainers:
+      - name: nginx-init
+        image: busybox
+        command: ['sh', '-c', "until nslookup nginx-service.netology.svc.cluster.local; do echo waiting for nginx-service; sleep 2; done"]
