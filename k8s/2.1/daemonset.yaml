@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonset
+  namespace: netology
+  labels:
+    app: multitool
+spec:
+  selector:
+    matchLabels:
+      name: daemonset
+  template:
+    metadata:
+      labels:
+        name: daemonset
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool:latest
+        command: ["sh", "-c", "sleep infinity"]
+        volumeMounts:
+        - name: logs
+          mountPath: /var/log
+      volumes:
+      - name: logs
+        hostPath:
+          path: /var/log
+          type: Directory
