@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: volume
+  namespace: netology
+spec:
+  selector:
+    matchLabels:
+      app: volume
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: volume
+    spec:
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        command: ['sh', '-c', 'sleep infinity']
+        volumeMounts:
+        - name: vol
+          mountPath: /test
+      volumes:
+      - name: vol
+        persistentVolumeClaim:
+          claimName: nfs1
