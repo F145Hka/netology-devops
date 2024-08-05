@@ -1,10 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-deployment
   namespace: netology
-  labels:
-    app: nginx
 spec:
   replicas: 1
   selector:
@@ -16,40 +14,15 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: nginx-container
-          image: nginx:latest
-          env:
-            - name: HTTP_PORT
-              value: "80"
-            - name: HTTPS_PORT
-              value: "443"
-          ports:
-            - containerPort: 80
-              name: http-port
-            - containerPort: 443
-              name: https-port
-          volumeMounts:
-            - name: index-file
-              mountPath: /usr/share/nginx/html/index.html
-              subPath: index.html
-            - name: nginx-cert
-              mountPath: /etc/nginx/ssl
-            - name: nginx-config
-              mountPath: /etc/nginx/nginx.conf
-              subPath: nginx.conf
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
       volumes:
-      - name: index-file
-        configMap:
-          name: nginx-config
-          items:
-          - key: index.html
-            path: index.html
-      - name: nginx-cert
-        secret:
-          secretName: nginx-secret
       - name: nginx-config
         configMap:
-          name: nginx-config
-          items:
-          - key: nginx.conf
-            path: nginx.conf
+          name: web-page-config

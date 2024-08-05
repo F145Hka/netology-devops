@@ -2,12 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
+  namespace: netology
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    app: nginx
 spec:
+  tls:
+  - hosts:
+    - example.com
+    secretName: my-secret
   rules:
-  - host: localhost
+  - host: example.com
     http:
       paths:
       - path: /
@@ -17,7 +23,3 @@ spec:
             name: nginx-service
             port:
               number: 80
-  tls:
-  - hosts:
-    - localhost
-    secretName: nginx-secret

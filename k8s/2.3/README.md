@@ -82,10 +82,10 @@ nginx-mt-7ccc64cc87-mmhjm:/# curl localhost
 3. _Выпустить самоподписной сертификат SSL. Создать Secret для использования сертификата._  
   
 ```
-❯ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout nginx.key -out nginx.crt
+❯ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=example.com/O=example.com"
 
-❯ kubectl create secret tls nginx-secret --key nginx.key --cert nginx.crt -n netology
-secret/nginx-secret created
+❯ kubectl create secret tls mysecret --key tls.key --cert tls.crt -n netology
+secret/my-secret created
 ```
 
 4. _Создать Ingress и необходимый Service, подключить к нему SSL в вид. Продемонстировать доступ к приложению по HTTPS._  
@@ -93,45 +93,18 @@ secret/nginx-secret created
 ```
 ❯ kubectl apply -f nginx-ingress.yaml
 ingress.networking.k8s.io/nginx-ingress created
-
-❯ curl https://localhost -k
-<html>
-<head><title>503 Service Temporarily Unavailable</title></head>
-<body>
-<center><h1>503 Service Temporarily Unavailable</h1></center>
-<hr><center>nginx</center>
-</body>
-</html>
-
-❯ kubectl get svc -n netology
-NAME            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
-nginx-service   NodePort   10.152.183.22   <none>        80:30683/TCP,443:30166/TCP   8m58s
-
-❯ curl https://localhost:30166
-curl: (60) SSL certificate problem: self-signed certificate
-More details here: https://curl.se/docs/sslcerts.html
-
-curl failed to verify the legitimacy of the server and therefore could not
-establish a secure connection to it. To learn more about this situation and
-how to fix it, please visit the web page mentioned above.
-
-❯ curl https://localhost:30166 -k
-<html>
-  <body>
-    <h1>Hello Netology!</h1>
-  </body>
-</html>
 ```
 
-Хоть убейте, но я не смог заставить работать ingress на дефолтных портах в WSL. Я перелопатил уже все, что можно, перекурил все форумы.
-Я вроде бы все сделал правильно, но на портах 80 и 443 он отказывается работать. Т.е. service работает корректно, а именно ingress нет.
+Мне все-таки удалось побороть ingress.  
+[Скрин](./images/screen_1.png)
+
   
 4. _Предоставить манифесты, а также скриншоты или вывод необходимых команд._  
   
-[nginx-configmap](./nginx-configmap.yaml)
-[nginx-deployment](./nginx-deployment.yaml)
-[nginx-service](./nginx-service.yaml)
-[nginx-ingress](./nginx-ingress.yaml)
+[nginx-configmap](./nginx-configmap.yaml)  
+[nginx-deployment](./nginx-deployment.yaml)  
+[nginx-service](./nginx-service.yaml)  
+[nginx-ingress](./nginx-ingress.yaml)  
 
 ------
 
