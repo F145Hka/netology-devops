@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-mt
+  namespace: netology
+spec:
+  selector:
+    matchLabels:
+      app: nginx-mt
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-mt
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+            - name: index-file
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      - name: multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 1080
+        env:
+          - name: HTTP_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: mt-config
+                key: HTTP_PORT
+      volumes:
+        - name: index-file
+          configMap:
+            name: mt-config
+            items:
+              - key: index.html
+                path: index.html
