@@ -111,7 +111,7 @@ resource "yandex_compute_instance_group" "lamp_group" {
   }
 
   metadata = {
-      user-data = "${file("/home/aakutukov/projects/netology/netology-devops/cloud/init.yaml")}"
+      user-data = "${file("/home/aakutukov/projects/netology/netology-devops/cloud/hw-2/init.yaml")}"
    }
   }
   
