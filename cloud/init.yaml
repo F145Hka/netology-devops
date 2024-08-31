@@ -1,0 +1,20 @@
+#cloud-config
+users:
+  - name: aakutukov
+    ssh_authorized_keys:
+      - ssh-rsa 
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+package_update: true
+package_upgrade: true
+write_files:
+  - path: /var/www/html/index.html
+    content: |
+      <html>
+      <head><title>Welcome to LAMP</title></head>
+      <body>
+         <p>This is a LAMP server.</p>
+         <img src="https://storage.yandexcloud.net/aakutukov-20240831/crimea.jpg" />
+      </body>
+      </html>
